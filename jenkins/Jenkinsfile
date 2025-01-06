@@ -1,9 +1,14 @@
 pipeline {
     agent any
     stages {
+        stage("Clean Up"){
+            steps{
+                deleteDir()
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn clean install'
             }
         }
         stage('Test') {
